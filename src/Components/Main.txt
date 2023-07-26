@@ -1,0 +1,45 @@
+import { useState } from 'react';
+import SplitPane, { Pane } from 'split-pane-react';
+import 'split-pane-react/esm/themes/default.css'
+import { Container } from 'react-bootstrap';
+import Host from '../Pages/Host';
+
+function Main () {
+    const [sizes, setSizes] = useState([
+        100,
+        '30%',
+        'auto',
+    ]);
+
+    const layoutCSS = {
+        height: '100%',
+
+        alignItems: 'center',
+    };
+
+    return (
+      <Container>
+          <div style={{ height: '100vh',borderRadius:'20px'}}>
+            <SplitPane
+                split='vertical'
+                sizes={sizes}
+                onChange={setSizes}
+            >
+                <Pane minSize={50} maxSize='50%'>
+                  <div style={{ ...layoutCSS, }}>
+              <Host/>
+                  </div>
+                </Pane>
+                <div style={{ ...layoutCSS,  }}>
+                sss
+                </div>
+                <div style={{ ...layoutCSS, }}>
+                ss    pane2
+                </div>
+            </SplitPane>
+        </div>
+      </Container>
+    );
+};
+
+export default Main
